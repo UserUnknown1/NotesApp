@@ -1,4 +1,5 @@
 <script>
+    import { goto } from "$app/navigation";
     import { json } from "@sveltejs/kit";
 
     let welcome=$state("Add a Note")
@@ -7,9 +8,10 @@
         {title:"",
         content:""}
     )
-     function clickbutt(){
-        fetch("http://127.0.0.1:8000/api/notes/add", {method:"POST", headers: {"Content-Type":"application/json" }, body: JSON.stringify(newNote)})
-        }
+     async function clickbutt(){
+        await fetch("http://127.0.0.1:8000/api/notes/add", 
+        {method:"POST", headers: {"Content-Type":"application/json" }, body: JSON.stringify(newNote)})
+       goto("/")}
 </script>
 <h1>{welcome}</h1>
 <h2>{subtitle}</h2>
